@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->registerPolicies();
+        // $this->registerPolicies();
 
-        // passport routes
-        Passport::routes();
+        // // passport routes
+        // Passport::routes();
 
         //
     }

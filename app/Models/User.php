@@ -2,55 +2,65 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+class User extends Model
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable ,HasApiTokens;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    //
+    protected $table = 'users';
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'full_name',
+        'firstname',
+        'name',
         'email',
         'phone',
-        'password'
-
+        'email_verified_at',
+        'password',
+        'image',
+        'gender',
+        'birthday',
+        'users_type',
+        'expiry_date',
+        'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    
+    
+
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+    public static function show() {
+        $user = self::all();
+        return $user;
     }
-    public function todos() {
-        return $this->hasMany(Todo::class);
+
+
+    public static function updateUser($id, $data) {
+        $user = self::find($id); // Tìm người dùng theo ID
+        if ($user) {
+            $user->update($data); // Cập nhật dữ liệu
+            return $user;
+        }
+        return null; // Trả về null nếu không tìm thấy người dùng
     }
+    public static function deleteUser($id) {
+        $user = self::find($id); // Tìm người dùng theo ID
+        if ($user) {
+            $user->delete(); // Xóa người dùng
+            return true;
+        }
+        return false; // Trả về false nếu không tìm thấy người dùng
+    }
+    
+    public static function findUserById($id) {
+        return self::find($id); // Tìm người dùng theo ID
+    }
+    
 
 }
