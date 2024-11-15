@@ -42,24 +42,24 @@ class User extends Model
 
 
     public static function updateUser($id, $data) {
-        $user = self::find($id); // Tìm người dùng theo ID
+        $user = self::find($id); 
         if ($user) {
-            $user->update($data); // Cập nhật dữ liệu
+            $user->update($data); 
             return $user;
         }
-        return null; // Trả về null nếu không tìm thấy người dùng
+        return null; 
     }
     public static function deleteUser($id) {
-        $user = self::find($id); // Tìm người dùng theo ID
+        $user = self::find($id);
         if ($user) {
-            $user->delete(); // Xóa người dùng
+            $user->delete(); 
             return true;
         }
-        return false; // Trả về false nếu không tìm thấy người dùng
+        return false; 
     }
     
     public static function findUserById($id) {
-        return self::find($id); // Tìm người dùng theo ID
+        return self::find($id); 
     }
     
 

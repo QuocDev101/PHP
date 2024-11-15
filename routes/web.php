@@ -27,5 +27,5 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 
 Route::get('/Login', [UserController::class, 'showLogin'])->name('login-index');
-Route::post('/Login', [UserController::class, 'showAPIUser'])->name('login');
+Route::post('/Login', [UserController::class, 'Login'])->name('login');
 Route::post('/Logout', [UserController::class, 'logout'])->name('logout');
