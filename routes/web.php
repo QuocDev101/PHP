@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 
 Route::get('/admin/users', [UserController::class, 'showUser'])->name('users.list');
-Route::get('/admin/APIusers', [UserController::class, 'showAPIUser'])->name('users.list');
+Route::get('/admin/APIusers', [UserController::class, 'showAPIUser']);
 
 Route::get('/token', function () {
     return csrf_token(); 
@@ -27,5 +27,5 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 
 Route::get('/Login', [UserController::class, 'showLogin'])->name('login-index');
-Route::post('/Login', [UserController::class, 'showAPIUser'])->name('login');
+Route::post('/Login', [UserController::class, 'authenticate'])->name('login');
 Route::post('/Logout', [UserController::class, 'logout'])->name('logout');

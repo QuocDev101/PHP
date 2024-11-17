@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class User extends Model
+class User extends Authenticatable
 {
     //
     protected $table = 'users';
@@ -34,6 +34,14 @@ class User extends Model
         'password',
         'remember_token',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 
     public static function show() {
         $user = self::all();
